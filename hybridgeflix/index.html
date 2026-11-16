@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HybridgeFlix</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-gray-100 p-6">
+    <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+
+        <h1 class="text-2xl font-bold mb-4">HybridgeFlix</h1>
+
+        <form id="formularioPelicula" class="mb-6">
+            <div class="mb-4">
+                <label for="titulo" class="block text-gray-700 font-bold mb-2">Título</label>
+                <input type="text" id="titulo" class="shadow appearance-none border rounded w-full py-2 px-3" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="anio" class="block text-gray-700 font-bold mb-2">Año</label>
+                <input type="number" id="anio" class="shadow appearance-none border rounded w-full py-2 px-3" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="calificacion" class="block text-gray-700 font-bold mb-2">Calificación (1-10)</label>
+                <input type="number" id="calificacion" min="1" max="10" class="shadow appearance-none border rounded w-full py-2 px-3" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="resena" class="block text-gray-700 font-bold mb-2">Reseña</label>
+                <textarea id="resena" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3" required></textarea>
+            </div>
+
+            <button type="submit" id="btnGuardar" class="bg-blue-500 text-white font-bold py-2 px-4 rounded">Guardar</button>
+        </form>
+        <table class="min-w-full bg-white">
+    <thead>
+        <tr>
+            <th class="py-2 px-4 border-b text-left">Título</th>
+            <th class="py-2 px-4 border-b text-left">Año</th>
+            <th class="py-2 px-4 border-b text-left">Calificación</th>
+            <th class="py-2 px-4 border-b text-left">Reseña</th>
+        </tr>
+    </thead>
+    <tbody id="cuerpoTablaPeliculas">
+        <!-- Los registros se añadirán aquí -->
+    </tbody>
+</table>
+
+    </div>
+</div> 
+
+    <script>
+    const formulario = document.getElementById("formularioPelicula");
+    const cuerpoTabla = document.getElementById("cuerpoTablaPeliculas");
+
+    formulario.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const titulo = document.getElementById("titulo").value;
+        const anio = document.getElementById("anio").value;
+        const calificacion = document.getElementById("calificacion").value;
+        const resena = document.getElementById("resena").value;
+
+        const fila = document.createElement("tr");
+
+        fila.innerHTML = `
+            <td>${titulo}</td>
+            <td>${anio}</td>
+            <td>${calificacion}</td>
+            <td>${resena}</td>
+      `;
+
+        cuerpoTabla.appendChild(fila);
+
+        formulario.reset();
+  });
+
+    </script>
+</body>
+</html>
